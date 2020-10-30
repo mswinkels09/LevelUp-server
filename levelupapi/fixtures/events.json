@@ -9,5 +9,16 @@
             "location": "Your Mom's House",
             "game": 1
         }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "gamer": 1,
+            "day": "2020-12-11",
+            "time": "12:00 PM",
+            "location": "Your Dad's House",
+            "game": 2
+        }
     }
 ]

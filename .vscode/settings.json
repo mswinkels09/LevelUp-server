@@ -6,5 +6,7 @@
             "name": "LevelUp DB",
             "database": "db.sqlite3"
         }
-    ]
+    ],
+    "python.pythonPath": "/home/mswinkels/.local/share/virtualenvs/levelup-_SVmfE0j/bin/python",
+    "python.linting.pylintEnabled": true
 }
