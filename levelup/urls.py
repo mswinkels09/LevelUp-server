@@ -18,7 +18,9 @@ from django.urls import path
 from levelupapi.views import register_user, login_user
 
 urlpatterns = [
+    #http://localhost:8000/register
     path('register', register_user),
+    #http://localhost:8000/login
     path('login', login_user),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 ]
