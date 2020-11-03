@@ -6,6 +6,7 @@ from rest_framework import serializers
 from levelupapi.models import GameType
 
 
+
 class GameTypes(ViewSet):
     """Level up game types"""
 
@@ -16,6 +17,7 @@ class GameTypes(ViewSet):
             Response -- JSON serialized game type
         """
         try:
+            # SELECT * FROM levelupapi_gametype WHERE id = ? 
             game_type = GameType.objects.get(pk=pk)
             serializer = GameTypeSerializer(game_type, context={'request': request})
             return Response(serializer.data)

@@ -8,6 +8,7 @@ from rest_framework import serializers
 from rest_framework import status
 from levelupapi.models import Game, GameType, Gamer
 
+##your new games/request.py##
 
 class Games(ViewSet):
     """Level up games"""
@@ -44,7 +45,7 @@ class Games(ViewSet):
         try:
             game.save()
             serializer = GameSerializer(game, context={'request': request})
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         # If anything went wrong, catch the exception and
         # send a response with a 400 status code to tell the
@@ -123,6 +124,7 @@ class Games(ViewSet):
             Response -- JSON serialized list of games
         """
         # Get all game records from the database
+        #SELECT * FROM levelupapi_game
         games = Game.objects.all()
 
         # Support filtering games by type
@@ -135,15 +137,18 @@ class Games(ViewSet):
 
         serializer = GameSerializer(
             games, many=True, context={'request': request})
+            ## Response = sends data in parentheses to client in JSON
         return Response(serializer.data)
 
-
+##sends a url with each individual game
 class GameSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for games
 
     Arguments:
         serializer type
     """
+
+    ##Prepare data to be sent as JSON##
     class Meta:
         model = Game
         url = serializers.HyperlinkedIdentityField(
@@ -151,4 +156,5 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'title', 'gametype', 'num_of_players', 'skill_level', 'gametype')
+        #nests the data
         depth = 1
