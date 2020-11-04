@@ -24,7 +24,9 @@ from levelupapi.views import Games, GameTypes, Events
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'gametypes', GameTypes, 'gametype')
-#(r=patternmatch, what string client is looking for, Class that you are looking for, descriptive name)
+#(r=patternmatch'what string client is looking for'
+# Class that you are looking for, 
+# 'descriptive name')
 router.register(r'games', Games, 'game')
 router.register(r'events', Events, 'event')
 

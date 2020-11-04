@@ -22,10 +22,10 @@ class Events(ViewSet):
         gamer = Gamer.objects.get(user=request.auth.user)
 
         event = Event()
+        event.day = request.data["day"]
         event.time = request.data["time"]
-        event.date = request.data["date"]
-        event.description = request.data["description"]
-        event.organizer = gamer
+        event.location = request.data["location"]
+        event.gamer = gamer
 
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game
@@ -56,13 +56,13 @@ class Events(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        organizer = Gamer.objects.get(user=request.auth.user)
+        gamer = Gamer.objects.get(user=request.auth.user)
 
         event = Event.objects.get(pk=pk)
-        event.description = request.data["description"]
-        event.date = request.data["date"]
+        event.day = request.data["day"]
         event.time = request.data["time"]
-        event.organizer = organizer
+        event.location = request.data["location"]
+        event.gamer = gamer
 
         game = Game.objects.get(pk=request.data["gameId"])
         event.game = game

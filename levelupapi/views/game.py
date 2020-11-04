@@ -1,11 +1,10 @@
 """View module for handling requests about games"""
 from django.core.exceptions import ValidationError
-from rest_framework import status
 from django.http import HttpResponseServerError
+from rest_framework import status
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from rest_framework import status
 from levelupapi.models import Game, GameType, Gamer
 
 ##your new games/request.py##
@@ -28,7 +27,6 @@ class Games(ViewSet):
         # body of the request from the client.
         game = Game()
         game.title = request.data["title"]
-        game.gametype = request.data["gametype"]
         game.num_of_players = request.data["numberOfPlayers"]
         game.skill_level = request.data["skillLevel"]
         game.gamer = gamer
@@ -151,10 +149,6 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     ##Prepare data to be sent as JSON##
     class Meta:
         model = Game
-        url = serializers.HyperlinkedIdentityField(
-            view_name='game',
-            lookup_field='id'
-        )
         fields = ('id', 'url', 'title', 'gametype', 'num_of_players', 'skill_level', 'gametype')
         #nests the data
         depth = 1
