@@ -17,7 +17,7 @@ from django.conf.urls import include
 from django.urls import path
 from rest_framework import routers
 from levelupapi.views import register_user, login_user
-from levelupapi.views import Games, GameTypes, Events
+from levelupapi.views import Games, GameTypes, Events, Profile
 
 
 ### Your new request_handler.py###
@@ -29,6 +29,7 @@ router.register(r'gametypes', GameTypes, 'gametype')
 # 'descriptive name')
 router.register(r'games', Games, 'game')
 router.register(r'events', Events, 'event')
+router.register(r'profile', Profile, 'profile')
 
 urlpatterns = [
     path('', include(router.urls)),
