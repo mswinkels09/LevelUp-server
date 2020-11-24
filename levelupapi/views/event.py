@@ -8,7 +8,6 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from levelupapi.models import Game, Event, Gamer, EventGamer
-from levelupapi.views.game import GameSerializer
 
 
 class Events(ViewSet):
@@ -197,6 +196,12 @@ class EventGamerSerializer(serializers.ModelSerializer):
         model = Gamer
         fields = ['user']
 
+class GameSerializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for games"""
+    class Meta:
+        model = Game
+        fields = ('id', 'title', 'num_of_players', 'skill_level')
+
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     """JSON serializer for events"""
     gamer = EventGamerSerializer(many=False)
@@ -207,9 +212,4 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'game', 'gamer',
                     'day', 'time', 'joined')
                     
-class GameSerializer(serializers.HyperlinkedModelSerializer):
-    """JSON serializer for games"""
-    class Meta:
-        model = Game
-        fields = ('id', 'title', 'num_of_players', 'skill_level')
 

@@ -84,7 +84,6 @@ class Games(ViewSet):
         # from the database whose primary key is `pk`
         game = Game.objects.get(pk=pk)
         game.title = request.data["title"]
-        game.gametype = request.data["gametype"]
         game.num_of_players = request.data["numberOfPlayers"]
         game.skill_level = request.data["skillLevel"]
         game.gamer = gamer
@@ -149,6 +148,6 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     ##Prepare data to be sent as JSON##
     class Meta:
         model = Game
-        fields = ('id', 'url', 'title', 'gametype', 'num_of_players', 'skill_level', 'gametype')
+        fields = ('id', 'url', 'title', 'num_of_players', 'skill_level', 'gametype')
         #nests the data
         depth = 1
